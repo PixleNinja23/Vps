@@ -80,7 +80,7 @@ while true; do
     
       print_option "1" "🔧 IDX Tool Setup" "$R"
       print_option "2" "⚡ IDX VPS Maker" "$R"
-      print_option "5" "❌ Exit" "$R"
+      print_option "3" "❌ Exit" "$R"
 
     
     print_divider
