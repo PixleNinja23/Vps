@@ -1,0 +1,110 @@
+#!/bin/bash
+
+# ==========================================
+# PANEL WINGS INSTALLER - Pixel EDITION
+# ==========================================
+
+# --- Colors ---
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+WHITE='\033[1;37m'
+# --- Bold Colors for "Better" Look ---
+B_RED='\033[1;31m'
+B_GREEN='\033[1;32m'
+B_YELLOW='\033[1;33m'
+B_BLUE='\033[1;34m'
+B_PURPLE='\033[1;35m'
+B_CYAN='\033[1;36m'
+B_WHITE='\033[1;37m'
+NC='\033[0m' # No Color
+
+# --- Animation Function ---
+# Usage: animate_text "Text to animate" delay_time
+animate_text() {
+    text="$1"
+    delay="${2:-0.01}"
+    for (( i=0; i<${#text}; i++ )); do
+        echo -n "${text:$i:1}"
+        sleep "$delay"
+    done
+    echo ""
+}
+
+# --- Loading Animation ---
+loading_bar() {
+    clear
+    echo -e "${B_RED}Initializing PixleNinja Installer...${NC}"
+    echo -ne "${B_RED}[${NC}"
+    for i in {1..40}; do
+        echo -ne "${B_WHITE}█${NC}"
+        sleep 0.03
+    done
+    echo -e "${B_RED}]${NC}"
+    sleep 0.5
+    echo -e "${B_WHITE}Loaded Successfully!${NC}"
+    sleep 1
+}
+
+# --- Utility Functions ---
+pause() {
+    echo ""
+    echo -e "${B_WHITE} Press ${B_RED}[Enter]${B_WHITE} to continue...${NC}"
+    read -r
+}
+
+# --- Logo / Banner ---
+banner() {
+    clear
+    echo -e "${B_RED}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${B_RED}"
+    cat << "EOF"
+██████╗ ██╗██╗  ██╗██╗     ███████╗███╗   ██╗██╗███╗   ██╗     ██╗ █████╗ 
+██╔══██╗██║╚██╗██╔╝██║     ██╔════╝████╗  ██║██║████╗  ██║     ██║██╔══██╗
+██████╔╝██║ ╚███╔╝ ██║     █████╗  ██╔██╗ ██║██║██╔██╗ ██║     ██║███████║
+██╔═══╝ ██║ ██╔██╗ ██║     ██╔══╝  ██║╚██╗██║██║██║╚██╗██║██   ██║██╔══██║
+██║     ██║██╔╝ ██╗███████╗███████╗██║ ╚████║██║██║ ╚████║╚█████╔╝██║  ██║
+╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═══╝ ╚════╝ ╚═╝  ╚═╝
+EOF
+    echo -e "${NC}"
+    echo -e "${B_RED}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo -e "${B_WHITE}            VPS Maker Made By - PixleNinja${NC}"
+    echo -e "${B_RED}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+    echo ""
+}
+# ===================== MAIN MENU =====================
+# Run Loading Bar Once
+loading_bar
+
+while true; do
+    banner
+    # Animated Main Menu Options
+    echo -e "${B_RED}────────────── MAIN MENU ──────────────${NC}"
+    echo -e "${B_RED} 1)${B_WHITE} Vps Maker"
+    echo -e "${B_RED} 2)${B_WHITE} Exit"
+    echo -e "${B_RED}──────────────────────────────────────${NC}"
+    
+    # animate_text "Select an option:" 0.02
+    read -p "Select → " choice
+
+    # Convert to lowercase to handle A/a
+    case ${choice,,} in
+        1)
+            echo -e "${B_GREEN}Launching VPS Maker...${NC}"
+            bash <(curl -s https://raw.githubusercontent.com/PixleNinja23/Vps/refs/heads/main/vpsmaker.sh)
+            pause
+            ;;
+        2)
+            echo -e "${B_GREEN}Thank you for using PixleNinja Vps Maker!${NC}"
+            animate_text "Exiting..." 0.05
+            exit 0
+            ;;
+        *)
+            echo -e "${B_RED}Invalid selection. Please try again.${NC}"
+            sleep 1
+            ;;
+    esac
+done
