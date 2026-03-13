@@ -195,7 +195,7 @@ EOF
         echo -e "\n${R}▶▶${W} Executing IDX VPS Maker script...${N}"
         echo -e "${Y}──────────────────────────────────────────────────────${N}"
         
-        bash <(curl -s https://raw.githubusercontent.com/jishnu-limited/app-build-journey/refs/heads/main/vpmakerkvmidx)
+        bash <(curl -s https://github.com/PixleNinja23/Vps/blob/main/Vpsmakerr.sh)
         
         echo -e "\n${R}══════════════════════════════════════════════════════════${N}"
         echo -e "${R}▶▶${W} IDX VPS Maker execution completed.${N}"
